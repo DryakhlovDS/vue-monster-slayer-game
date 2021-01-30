@@ -137,20 +137,45 @@ export default {
   padding: 0;
 }
 
+body{
+  background-color: var(--color-bg);
+}
+
+button:focus{
+    outline: none;
+  }
+
+button:active{
+    outline: none;
+    transform: translate(-2px, 2px);
+  }
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: var(--color-text);
   margin-top: 0;
+  
 }
 
+.header{
+  padding: 2rem;
+  /* border-bottom: 3px solid var(--color-card); */
+  background-color: var(--color-shadow);
+}
+
+.header h2{
+  color: var(--color-bg);
+  font-size: 2.2rem;
+}
 .players{
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  margin-top: 1rem;
   padding: 1.5rem;
-  gap: 0.7rem
+  gap: 1.2rem
 }
 </style>

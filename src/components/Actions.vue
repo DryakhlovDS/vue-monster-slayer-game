@@ -54,6 +54,18 @@ export default {
   &__btn{
     padding: 1rem;
     font-size: 1.3rem;
+    color: var(--color-red);;
+    background-color: var(--color-card);
+    border: 2px solid var(--color-shadow);
+    cursor: pointer;
+
+    &:disabled{
+      color: var(--color-shadow);
+      border-color: var(--color-card);
+      background-color: var(--color-bg);
+      cursor: default;
+    }
+
     &+&{
       margin-top: 0.5rem;
     }

@@ -39,16 +39,20 @@ export default {
   width: 100%;
   max-width: 600px;
   padding: 1rem 1.5rem;
-  border: 2px solid #000000;
+  border-radius: var(--border-radius);
+  border: 2px solid var(--color-card);
+  background-color: var(--color-bg);
+  box-shadow: 0 2px 13px var(--color-shadow);
 
   &__title{
+    font-size: 1.2rem;
     margin-bottom: 0.7rem;
   }
 
   &__health
   {
     height: inherit;
-    background-color: green;
+    background-color: var(--color-health);
     transition: width 0.7s ease-out;
     
     &-points{
@@ -64,7 +68,7 @@ export default {
     position: relative;
     width: 100%;
     height: 2rem;
-    background-color: #00000030;
+    background-color: var(--color-card);
     cursor: pointer;
 
       &:hover{

@@ -25,12 +25,24 @@ export default {
   max-width: 400px;
   margin: 2rem auto;
   padding: 1rem;
-  border-radius: 0.5rem;
-  border: 1px solid #000000 ;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--color-card) ;
+  box-shadow: 0 2px 13px var(--color-shadow);
   
   &__title{
+    position: relative;
     // text-transform: capitalize;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+
+    &::after{
+      content: "";
+      position: absolute;
+      bottom: -0.5rem;
+      left: 10%;
+      width: 80%;
+      height: 1px;
+      background-color: var(--color-shadow);
+    }
   }
 
   & ul{
