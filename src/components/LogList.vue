@@ -2,7 +2,7 @@
   <section class="logs">
     <h4 class="logs__title">Battle logs:</h4>
     <ul>
-      <li v-for="(log, index) of logs" :key="index" class="logs__item">{{log}}</li>
+      <li v-for="(log, index) of logs" :key="index" class="logs__item">{{log.player}} {{log.action}} {{log.value}}</li>
     </ul>
   </section>
 </template>

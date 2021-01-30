@@ -14,7 +14,7 @@
     @heal="heal"
     @flag="surrender"
     />
-    <LogList :logs="logs"/>
+    <LogList v-if="winner" :logs="logs"/>
   </main>
 </template>
 
@@ -34,50 +34,63 @@ export default {
   },
   data: () => ({
     logs: [],
-    game: false,
+    game: null,
     winner: null,
     healthPlayer: 0,
     healthMonster: 0,
     namePlayer: "",
+    settings: {
+      normal: {
+        atackMin: 6,
+        atackMax: 10,
+        sAtackMin: 10,
+        sAtackMax: 14,
+        healMin: 8,
+        healMax: 14,
+      },
+      hard: {
+        atackMin: 6,
+        atackMax: 8,
+        sAtackMin: 10,
+        sAtackMax: 12,
+        healMin: 8,
+        healMax: 11,
+      },
+    }
   }),
   watch: {
     healthPlayer(value){
       if (value <= 0) {
         this.winner = "Monster";
-        this.game = false;
+        this.game = null;
       }
     },
     healthMonster(value){
       if (value <= 0) {
         this.winner = this.namePlayer;
-        this.game = false;
+        this.game = null;
       }
     },
   },
   methods: {
-    hp(){
-      this.logs.unshift({player: "Player",
-      action: "health",
-      value: this.healthPlayer
-      });
-    },
-    setGame(value){
-      this.game = value;
+    setGame(type, name){
+      this.game = type;
       this.healthPlayer = 100;
       this.healthMonster = 100;
       this.logs = [];
-      this.namePlayer = "DS";
+      this.namePlayer = name;
+      this.winner = "nether";
     },
     getRandom(min, max){
       const val = Math.floor(Math.random() * (max-min)) + min;
       return val;
     },
     atackToMonster(){
-      const value = this.getRandom(6,10);
+      const value = this.getRandom(this.settings[this.game].atackMin, this.settings[this.game].atackMax);
       this.healthMonster -= value;
       this.logs.unshift({player: this.namePlayer,
       action: "atack",
-      value
+      value: value +'hp',
       });
       this.atackToPlayer();
     },
@@ -86,29 +99,29 @@ export default {
       this.healthPlayer -= value;
       this.logs.unshift({player: "Monster",
       action: "atack",
-      value
+      value: value +'hp',
       });
     },
     superAtackToMonster(){
-      const value = this.getRandom(10,14);
+      const value = this.getRandom(this.settings[this.game].sAtackMin, this.settings[this.game].sAtackMax);
       this.healthMonster -= value;
       this.logs.unshift({player: this.namePlayer,
-      action: "atack",
-      value
+      action: "super atack",
+      value: value +'hp',
       });
       this.atackToPlayer();
     },
     heal(){
-      const value = this.getRandom(6,10);
+      const value = this.getRandom(this.settings[this.game].healMin, this.settings[this.game].healMax);
       this.healthPlayer += value;
       this.logs.unshift({player: this.namePlayer,
       action: "heal yourself",
-      value
+      value: value +'hp',
       });
       this.atackToPlayer();
     },
     surrender(){
-      this.logs.unshift({player: "Player",
+      this.logs.unshift({player: this.namePlayer,
       action: "surrender",
       });
       this.healthPlayer = 0;

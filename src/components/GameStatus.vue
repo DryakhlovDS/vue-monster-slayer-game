@@ -1,7 +1,16 @@
 <template>
   <section class="card-status">
-    <h3 v-if="isName">{{name}} won!</h3>
-    <button @click="newGame"> Start new geme</button>
+    <div v-if="!setSettings" class="new-game">
+      <h3 v-if="isName">{{name}} won!</h3>
+      <button @click="newSettings"> Start new geme</button>
+    </div>
+    <div v-else class="settings">
+      <label for="name">Name player:</label>
+      <input v-model="newName" type="text" id="name">
+      <br>
+      <button @click="newGame('normal')">normal</button>
+      <button @click="newGame('hard')">hard</button>
+    </div>
   </section>
 </template>
 
@@ -14,6 +23,10 @@ props: {
     default: "",
   }
 },
+data: () => ({
+  newName: "",
+  setSettings: false,
+}),
 computed: {
   isName(){
     if (this.name) return true;
@@ -21,8 +34,11 @@ computed: {
   }
 },
 methods: {
-  newGame(){
-    this.$emit('newGame', true);
+  newGame(type){
+    this.$emit('newGame', type, this.newName);
+  },
+  newSettings(){
+    this.setSettings = true;
   },
 }
 }
