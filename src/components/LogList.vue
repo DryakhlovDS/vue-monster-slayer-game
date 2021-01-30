@@ -21,7 +21,7 @@ export default {
 
 <style lang="scss" scoped>
 .logs{
-  width: 100%;
+  width: 90%;
   max-width: 400px;
   margin: 2rem auto;
   padding: 1rem;

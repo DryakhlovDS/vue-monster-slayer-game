@@ -69,7 +69,7 @@ methods: {
 
 <style lang="scss" scoped>
 .card-status{
-  width: 100%;
+  width: 96%;
   max-width: 600px;
   margin: 2rem auto;
   padding: 1rem;
@@ -190,7 +190,8 @@ methods: {
   &__btn{
     margin-top: 1rem;
     padding: 1rem;
-    width: calc(400px - 4rem);
+    width: 90%;
+    max-width: calc(400px - 4rem);
     font-size: 1.3rem;
     color: var(--color-text);
     background-color: var(--color-bg);
