@@ -1,9 +1,13 @@
 <template>
   <section class="actions">
-    <button class="actions__btn" @click="atack">Attack</button>
-    <button class="actions__btn" @click="sAtack" :disabled="!superAtackEnable">Special atack</button>
-    <button class="actions__btn" @click="heal">Heal</button>
-    <button class="actions__btn" @click="flag">White flag</button>
+    <button class="actions__btn" @click="atack">
+      <img src="../assets/sword.png" class="actions__icon"/>Attack</button>
+    <button class="actions__btn" @click="sAtack" :disabled="!superAtackEnable">
+      <img src="../assets/swords.png" class="actions__icon"/> Special atack</button>
+    <button class="actions__btn" @click="heal">
+      <img src="../assets/healing.png" class="actions__icon"/>Heal</button>
+    <button class="actions__btn" @click="flag">
+      <img src="../assets/flag-hand-drawn-outline.svg" class="actions__icon"/>White flag</button>
   </section>
 </template>
 
@@ -52,12 +56,15 @@ export default {
   padding: 1rem 2rem;
 
   &__btn{
-    padding: 1rem;
+    padding: 0.5rem;
     font-size: 1.3rem;
     color: var(--color-red);;
     background-color: var(--color-card);
     border: 2px solid var(--color-shadow);
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     &:disabled{
       color: var(--color-shadow);
@@ -69,6 +76,37 @@ export default {
     &+&{
       margin-top: 0.5rem;
     }
+
+    &:hover{
+      & .actions__icon{
+        animation: action 1s infinite;
+        // transform: rotate(-15deg);
+        // transform: scale(1.1, 1.1);
+      }
+    }
+  }
+
+  &__icon{
+    height: 35px;
+    margin-right: 1rem;
+  }
+}
+
+@keyframes action {
+  from{
+    transform: rotate(0);
+  }
+  25%{
+    transform: rotate(-5deg);
+  }
+  50%{
+    transform: rotate(0);
+  }
+  75%{
+    transform: rotate(5deg);
+  }
+  to{
+    transform: rotate(0);
   }
 }
 </style>

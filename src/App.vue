@@ -139,6 +139,7 @@ export default {
 
 body{
   background-color: var(--color-bg);
+  overflow-y: scroll;
 }
 
 button:focus{
