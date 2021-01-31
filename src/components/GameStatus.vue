@@ -1,6 +1,6 @@
 <template>
   <section class="card-status">
-    <div v-if="!setSettings" class="new-game">
+    <!-- <div v-if="!setSettings" class="new-game">
       <h3 v-if="isName" class="new-game__title">{{name}} won!</h3>
       <button @click="newSettings" class="new-game__btn">
         <div class="border-left"></div>
@@ -29,13 +29,21 @@
         class="settings__btn" 
         :disabled="!newName"
         >hard</button>
-    </div>
+    </div> -->
+    <component :is="setSettings" @newSettings="newSettings"></component>
   </section>
 </template>
 
 <script>
+import NewGame from './NewGame.vue';
+import Settings from './Settings.vue';
+
 export default {
 name: "GameStatus",
+components: {
+  NewGame,
+  Settings,
+},
 props: {
   name: {
     type: String,
@@ -44,7 +52,7 @@ props: {
 },
 data: () => ({
   newName: "",
-  setSettings: false,
+  setSettings: "NewGame",
 }),
 computed: {
   isName(){
@@ -60,8 +68,8 @@ methods: {
   newGame(type){
     this.$emit('newGame', type, this.newName);
   },
-  newSettings(){
-    this.setSettings = true;
+  newSettings(cmp){
+    this.setSettings = cmp;
   },
 }
 }
