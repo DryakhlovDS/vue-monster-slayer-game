@@ -7,7 +7,7 @@
       <PlayerBar name="Monster" :health="healthMonster" />
       <PlayerBar :name="namePlayer" :health="healthPlayer" />
     </section>
-    <GameStatus v-if="!game" @newGame="setGame" />
+    <GameStatus v-if="!game" />
     <Actions v-else
     @atack="atackToMonster"
     @sAtack="superAtackToMonster"
