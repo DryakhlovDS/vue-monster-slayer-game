@@ -11,9 +11,9 @@
 export default {
   name: "LogList",
   props: {
-    logs:{
+    logs: {
       type: Array,
-      default: () =>([]),
+      default: () => ([]),
     }
   }
 }
@@ -28,6 +28,7 @@ export default {
   border-radius: var(--border-radius);
   border: 1px solid var(--color-card) ;
   box-shadow: 0 2px 13px var(--color-shadow);
+
   
   &__title{
     position: relative;

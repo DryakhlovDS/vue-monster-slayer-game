@@ -1,6 +1,6 @@
 <template>
   <div class="new-game">
-      <h3 v-if="isName" class="new-game__title">{{winner.value}} won!</h3>
+      <h3 v-if="isName" class="new-game__title">{{winnerName}} won!</h3>
       <button @click="newSettings" class="new-game__btn">
         <div class="border-left"></div>
         <div class="border-top"></div>
@@ -16,9 +16,12 @@ export default {
   inject: ['winner'],
   computed: {
     isName(){
-      if (this.winner.value) return true;
+      if (this.winnerName) return true;
       return false;
     },
+    winnerName() {
+      return this.winner();
+    }
   },
   methods: {
     newSettings(){
