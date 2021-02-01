@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import {computed} from 'vue';
 import PlayerBar from './components/PlayerBar';
 import GameStatus from './components/GameStatus';
 import Actions from './components/Actions';
@@ -74,7 +75,7 @@ export default {
   },
   provide() {
     return  {
-      winner: this.winner,
+      winner: computed(() => this.winner),
       newGame: this.setGame,
       };
     },
