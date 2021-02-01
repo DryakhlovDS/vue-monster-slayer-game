@@ -14,12 +14,11 @@
     @heal="heal"
     @flag="surrender"
     />
-    <LogList v-if="winner" :logs="logs"/>
+    <LogList :logs="logs" />
   </main>
 </template>
 
 <script>
-import {computed} from 'vue';
 import PlayerBar from './components/PlayerBar';
 import GameStatus from './components/GameStatus';
 import Actions from './components/Actions';
@@ -33,7 +32,8 @@ export default {
     Actions,
     LogList
   },
-  data: () => ({
+  data() {
+    return {
     logs: [],
     game: null,
     winner: "",
@@ -58,7 +58,8 @@ export default {
         healMax: 11,
       },
     }
-  }),
+  };
+  },
   watch: {
     healthPlayer(value){
       if (value <= 0) {
@@ -75,10 +76,10 @@ export default {
   },
   provide() {
     return  {
-      winner: computed(() => this.winner),
+      winner: () => this.winner,
       newGame: this.setGame,
-      };
-    },
+    };
+  },
   methods: {
     setGame(type, name){
       this.game = type;
