@@ -1,6 +1,7 @@
 <template>
   <section class="card-status">
-    <component :is="setSettings" @newSettings="newSettings"></component>
+    <NewGame v-if="!setSettings" @newSettings="newSettings" />
+    <Settings v-else />
   </section>
 </template>
 
@@ -15,11 +16,11 @@ components: {
   Settings,
 },
 data: () => ({
-  setSettings: "NewGame",
+  setSettings: false,
 }),
 methods: {
-  newSettings(cmp){
-    this.setSettings = cmp;
+  newSettings(value){
+    this.setSettings = value;
   },
 }
 }
