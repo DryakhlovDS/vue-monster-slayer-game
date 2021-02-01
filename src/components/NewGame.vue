@@ -25,7 +25,7 @@ export default {
   },
   methods: {
     newSettings(){
-      this.$emit('newSettings', true);
+      this.$emit('newSettings', 'Settings');
     },
   },
 }
