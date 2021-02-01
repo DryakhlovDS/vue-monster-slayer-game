@@ -7,7 +7,7 @@
       <PlayerBar name="Monster" :health="healthMonster" />
       <PlayerBar :name="namePlayer" :health="healthPlayer" />
     </section>
-    <GameStatus v-if="!game" @newGame="setGame" :name="winner"/>
+    <GameStatus v-if="!game" @newGame="setGame" />
     <Actions v-else
     @atack="atackToMonster"
     @sAtack="superAtackToMonster"
@@ -35,7 +35,7 @@ export default {
   data: () => ({
     logs: [],
     game: null,
-    winner: null,
+    winner: "",
     healthPlayer: 0,
     healthMonster: 0,
     namePlayer: "",
@@ -72,13 +72,19 @@ export default {
       }
     },
   },
+  provide() {
+    return  {
+      winner: this.winner,
+      newGame: this.setGame,
+      };
+    },
   methods: {
     setGame(type, name){
       this.game = type;
+      this.namePlayer = name;
       this.healthPlayer = 100;
       this.healthMonster = 100;
       this.logs = [];
-      this.namePlayer = name;
       this.winner = "nether";
     },
     getRandom(min, max){
